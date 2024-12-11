@@ -1,10 +1,6 @@
 # FULL_ADDER_SUBTRACTOR
 
 Implementation-of-Full-Adder-and-Full-subtractor-circuit
-``` 
-Developed by: BALA B
-RegisterNumber: 24900698
-```
 
 **AIM:**
 
@@ -41,80 +37,52 @@ Diff = A ⊕ B ⊕ Bin
 Borrow out = A'Bin + A'B + BBin
 
 **Truthtable**
-
-**FULL ADDER:**
-
-![DE E-4 truthtable](https://github.com/04Varsha/FULL_ADDER_SUBTRACTOR/assets/149035374/7116d2bf-8e90-4e96-bfd5-d62af11a317a)
-
-**FULL SUBTRACTOR:**
-
-![DE E-4 subtractor truth table](https://github.com/04Varsha/FULL_ADDER_SUBTRACTOR/assets/149035374/33d8ba16-9169-40b0-8696-3bb8e5c3a0b7)
-
+![Screenshot 2024-12-09 234001](https://github.com/user-attachments/assets/2401cdad-1225-41a5-99bc-e7d0b8d4046b)
+![Screenshot 2024-12-09 234210](https://github.com/user-attachments/assets/e9ab09e6-1a46-4ef7-aa28-7328c7b4f26c)
 
 **Procedure**
 
-Write the detailed procedure here
-
-~~~
-**Full Adder:**
-1.Open Quartus II and create a new project.
-2.Use schematic design entry to draw the full adder circuit. 
-3.The circuit consists of XOR, AND, and OR gates. 
-4.Compile the design, verify its functionality through simulation. 
-5.Implement the design on the target device and program it.
-
-**Full Subtractor:** 
-1.Follow the same steps as for the full adder. 
-2.Draw the full subtractor circuit using schematic design. 
-3.The circuit includes XOR, AND, OR gates to perform subtraction. 
-4.Compile, simulate, implement, and program the design similarly to the full adder.
-~~~
+1. Type the program in Quartus software .
+2. Compile and run the program.
+3. Generate the RTL schematic and save the logic diagram.
+4. Create nodes for inputs and outputs to generate the timing diagram.
+5. For different input combinations generate the timing diagram.
 
 **Program:**
 
-/* Program to design a half subtractor and full subtractor circuit and verify its truth table in quartus using Verilog programming.
-
-~~~
-
-## Full_adder
-module fulladd_top(a,b,cin,sum,carry);
-input a,b,cin;
+module fulladder(a,b,c,sum,carry);
+input a,b,c;
 output sum,carry;
-wire w1,w2,w3,w4;       
-xor(w1,a,b);
-xor(sum,w1,cin);        
-
-and(w2,a,b);
-and(w3,b,cin);
-and(w4,cin,a);
-
-or(carry,w2,w3,w4);
-endmodule 
-
-## Full_subtractor
-module fullsub_top(a,b,Bin,BO,DIFF);
-input a,b,Bin;
-output BO,DIFF;
-assign DIFF = a ^ b ^ Bin;
-  assign BO = (a & b) | ((a ^ b) & Bin);
+wire w1,w2,w3;
+assign sum=a^b^c;
+assign w1=a&b;
+assign w2=b&c;
+assign w3=c&a;
+assign carry=w1|w2|w3;
 endmodule
 
-~~~
+module fullsub(df,bo,a,b,bin);
+input a,b,bin;
+output df,bo;
+wire w1,w2,w3;
+assign w1=a^b;
+assign w2=(~a&b);
+assign w3=(~w1&bin);
+assign df=w1^bin;
+assign bo=w2|w3;
+endmodule
+
+
+Developed by:BALA B
+RegisterNumber:24900698
+
 
 **RTL Schematic**
-
-![318332382-c01e6c3c-d648-4bad-8a98-66d93df13f1a](https://github.com/04Varsha/FULL_ADDER_SUBTRACTOR/assets/149035374/2e45d893-4f83-4a98-8bc2-d0d30b70e7e2)
+![Screenshot 2024-12-10 090014](https://github.com/user-attachments/assets/c9c5df9b-a97e-4d95-9111-bdd87bc6f291)
+![Screenshot 2024-12-10 011619 - Copy](https://github.com/user-attachments/assets/81496a3f-f9d7-4306-88ef-2f9427d90c18)
 
 **Output Timing Waveform**
-
-**FULL ADDER**
-
-![318332443-3411cbc7-4f76-4664-a513-e348a9880eff](https://github.com/04Varsha/FULL_ADDER_SUBTRACTOR/assets/149035374/5d286c1d-e62e-454a-a389-00ba2c2a91fc)
-
-**FULL SUBTRACTOR**
-
-![318332487-1cc068c4-6398-4a52-bae8-39c6657c0a9a](https://github.com/04Varsha/FULL_ADDER_SUBTRACTOR/assets/149035374/03d5d030-815e-4847-a976-2fd282cf0333)
-
+![Screenshot 2024-12-10 092057](https://github.com/user-attachments/assets/5a990645-cbdc-43a3-b821-0baf71f8949a)
 
 **Result:**
 
